@@ -26,9 +26,4 @@ pipeline {
         }
 
     }
-        post {
-            failure {
-                mail body: 'Pipeline fail', to: "oueslatiiheb0@gmail.com", subject: 'Pipeline fail'
-            }
-        }
 }
