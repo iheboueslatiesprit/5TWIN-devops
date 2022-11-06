@@ -30,18 +30,18 @@ pipeline {
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker login -u $USERNAME -p $PASSWORD'
+                    sh 'sudo docker login -u $USERNAME -p $PASSWORD'
                 }
             }
         }
         stage('Docker build') {
             steps {
-                sh 'docker build -t iheb120/tpAchatProject:1.0 .'
+                sh 'sudo docker build -t iheb120/tpAchatProject:1.0 .'
             }
         }
         stage('Docker push') {
             steps {
-                sh 'docker push iheboueslati/tpAchatProject:1.0'
+                sh 'sudo docker push iheboueslati/tpAchatProject:1.0'
             }
         }
 
