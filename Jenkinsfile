@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('Dockerhub')
+	}
     tools {
         maven 'M2_HOME'
         jdk 'JAVA_HOME'
@@ -22,6 +25,13 @@ pipeline {
         stage('Package') {
             steps {
                 sh 'mvn -DskipTests clean package'
+            }
+        }
+        stage('Login to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'docker login -u $USERNAME -p $PASSWORD'
+                }
             }
         }
         stage('Docker build') {
