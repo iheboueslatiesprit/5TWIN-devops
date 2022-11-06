@@ -24,6 +24,18 @@ pipeline {
                 sh 'mvn -DskipTests clean package'
             }
         }
+        stage('Docker build') {
+            steps {
+                sh 'docker build -t iheb120/tpAchatProject:1.0 .'
+            }
+        }
+        stage('Docker push') {
+            steps {
+                sh 'docker push iheboueslati/tpAchatProject:1.0'
+            }
+        }
+
+
 
     }
 }
