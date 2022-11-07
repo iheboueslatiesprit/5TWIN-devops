@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Docker tag') {
             steps {
-                sh 'sudo docker tag springboot springboot:latest'
+                sh 'sudo docker tag springboot iheb120/springboot:latest'
             }
         }
 
