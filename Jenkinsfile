@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh 'sudo docker build -t sprintboota .'
+                sh 'sudo docker build -t springboot .'
             }
         }
         stage('Docker tag') {
