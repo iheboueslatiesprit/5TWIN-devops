@@ -47,7 +47,7 @@ pipeline {
 
         stage('Docker push') {
             steps {
-                sh 'sudo docker push iheboueslati/springboot:latest'
+                sh 'sudo docker push springboot:latest'
             }
         }
 
