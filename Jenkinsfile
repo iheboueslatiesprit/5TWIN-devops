@@ -36,12 +36,18 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh 'sudo docker build -t iheb120/springboot:1.0 .'
+                sh 'sudo docker build -t sprintboota .'
             }
         }
+        stage('Docker tag') {
+            steps {
+                sh 'sudo docker tag springboot springboot:latest'
+            }
+        }
+
         stage('Docker push') {
             steps {
-                sh 'sudo docker push iheboueslati/springboot:1.0'
+                sh 'sudo docker push iheboueslati/springboot:latest'
             }
         }
 
