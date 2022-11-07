@@ -22,6 +22,11 @@ pipeline {
                 url: 'https://github.com/iheboueslatiesprit/5TWIN-devops.git'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+
         stage('Package') {
             steps {
                 sh 'mvn -DskipTests clean package'
