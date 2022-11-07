@@ -36,12 +36,12 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh 'sudo docker build -t iheb120/tpAchatProject:1.0 .'
+                sh 'sudo docker build -t iheb120/springboot:1.0 .'
             }
         }
         stage('Docker push') {
             steps {
-                sh 'sudo docker push iheboueslati/tpAchatProject:1.0'
+                sh 'sudo docker push iheboueslati/springboot:1.0'
             }
         }
 
