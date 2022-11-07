@@ -41,13 +41,13 @@ pipeline {
         }
         stage('Docker tag') {
             steps {
-                sh 'sudo docker tag springboot iheb120/springboot:latest'
+                sh 'sudo docker tag 3321747afcd0 iheb120/springboot:springboot'
             }
         }
 
         stage('Docker push') {
             steps {
-                sh 'sudo docker push springboot:latest'
+                sh 'sudo docker push iheb120/springboot:springboot'
             }
         }
 
