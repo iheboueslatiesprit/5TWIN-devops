@@ -39,6 +39,7 @@ pipeline {
                 }
             }
         }
+
         stage('Docker build') {
             steps {
                 sh 'sudo docker build -t springboot .'
