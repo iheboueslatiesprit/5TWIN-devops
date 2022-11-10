@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Stock;
 import org.mockito.InjectMocks;
@@ -22,6 +23,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestPropertySource(properties =
+		"spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration")
 public class StockServiceImplTest {
 	//@Autowired
 	//IStockService stockService;
