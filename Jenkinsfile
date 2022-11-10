@@ -40,7 +40,7 @@ pipeline {
         stage('SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQubeLocal') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar'
                 }
             }
         }
