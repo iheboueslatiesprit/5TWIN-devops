@@ -40,12 +40,7 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.7.0.1746</version>
-			</plugin>
-<dependency>
+		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.6</version>
@@ -110,6 +105,11 @@
 						<include>**/*Test.java</include>
 					</includes>
 				</configuration>
+			</plugin>
+					<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.7.0.1746</version>
 			</plugin>
 				<plugin>
 				<groupId>org.jacoco</groupId>
