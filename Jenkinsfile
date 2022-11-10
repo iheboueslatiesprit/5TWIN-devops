@@ -32,18 +32,24 @@ pipeline {
                 sh 'mvn clean'
             }
         }
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQubeLocal') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn package'
             }
         }
-        stage('SonarQube') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
-        }
+
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
