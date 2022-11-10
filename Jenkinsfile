@@ -27,9 +27,21 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Package') {
+        stage('Clean') {
             steps {
-                sh 'mvn -DskipTests clean package'
+                sh 'mvn clean'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
         stage('Login to DockerHub') {
