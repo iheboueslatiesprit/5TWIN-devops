@@ -27,12 +27,12 @@ pipeline {
                 url: 'https://github.com/iheboueslatiesprit/5TWIN-devops.git'
             }
         }
-       /* stage('Test') {
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-        */
+
         stage('Clean') {
             steps {
                 sh 'mvn clean'
@@ -43,14 +43,14 @@ pipeline {
                 sh 'mvn compile'
             }
         }
-/*        stage('SonarQube') {
+        stage('SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQubeLocal') {
                     sh 'mvn sonar:sonar'
                 }
             }
         }
-*/
+
 
         stage('Build') {
             steps {
@@ -93,7 +93,7 @@ pipeline {
                 }
             }
         }
-    /*
+
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -118,7 +118,7 @@ pipeline {
                 sh 'sudo docker push iheb120/springboot:springboot'
             }
         }
-    */
+
 
 
     }
