@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn -Dhttps.protocols=TLSv1.2 test'
+                sh 'mvn test'
             }
         }
 
