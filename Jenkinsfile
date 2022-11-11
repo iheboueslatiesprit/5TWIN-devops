@@ -110,11 +110,9 @@ pipeline {
                         sh 'sudo docker login -u $USERNAME -p $PASSWORD'
                      //   sh 'sudo docker tag springboot:latest iheb120/springboot:latest'
                         sh 'sudo docker build -t iheb120/springboot .'
-                        
-                       // sh 'sudo docker push iheboueslati/springboot'
+                        sh 'sudo docker push iheb120/springboot'
                         }
-                        //def myimage = docker.build("iheboueslati/springboot:${pom.version}", "-f Dockerfile .")
-                        //myimage.push()
+                       
                         
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
