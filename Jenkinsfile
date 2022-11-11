@@ -95,6 +95,7 @@ pipeline {
             }
         }
 */      
+
         stage('github to dockerhub') {
             steps {
                 script {
@@ -107,8 +108,10 @@ pipeline {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'sudo docker login -u $USERNAME -p $PASSWORD'
+                        sh 'sudo docker tag springboot:latest iheboueslati/springboot:latest'
                         sh 'sudo docker build -t iheboueslati/springboot .'
-                        sh 'sudo docker push iheboueslati/springboot'
+                        
+                       // sh 'sudo docker push iheboueslati/springboot'
                         }
                         //def myimage = docker.build("iheboueslati/springboot:${pom.version}", "-f Dockerfile .")
                         //myimage.push()
@@ -119,6 +122,8 @@ pipeline {
                 }
             }
         }
+
+
         /*
         
         stage('Login to DockerHub') {
