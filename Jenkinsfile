@@ -43,6 +43,7 @@ pipeline {
                 sh 'mvn compile'
             }
         }
+        /*
         stage('SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQubeLocal') {
@@ -51,13 +52,13 @@ pipeline {
             }
         }
 
-
+*/
         stage('Build') {
             steps {
                 sh 'mvn install -DskipTests=true'
             }
         }
-
+/*
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -101,7 +102,7 @@ pipeline {
                 }
             }
         }
-
+        stage('Pull build from nexus repository manager')
         stage('Docker build') {
             steps {
                 sh 'sudo docker build -t springboot .'
@@ -120,6 +121,6 @@ pipeline {
         }
 
 
-
+*/
     }
 }
