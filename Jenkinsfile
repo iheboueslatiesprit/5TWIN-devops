@@ -35,12 +35,12 @@ pipeline {
 
         stage('Clean') {
             steps {
-                sh 'mvn -Dhttps.protocols=TLSv1.2 clean'
+                sh 'mvn  clean'
             }
         }
         stage('Compile') {
             steps {
-                sh 'mvn-Dhttps.protocols=TLSv1.2 compile'
+                sh 'mvn compile'
             }
         }
         /*
@@ -55,7 +55,7 @@ pipeline {
 */
         stage('Build') {
             steps {
-                sh 'mvn install -Dhttps.protocols=TLSv1.2 -DskipTests=true'
+                sh 'mvn install -DskipTests=true'
             }
         }
 /*
