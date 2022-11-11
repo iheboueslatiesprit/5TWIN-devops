@@ -1,4 +1,5 @@
 FROM openjdk:11
 MAINTAINER esprit.tn
-COPY target/tpAchatProject-1.0.jar tpAchatProject.jar
-ENTRYPOINT ["java","-jar","tpAchatProject.jar"]
+COPY target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
+ENTRYPOINT ["java","-jar","/tpAchatProject.jar"]
+
