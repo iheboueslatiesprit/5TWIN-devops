@@ -106,15 +106,11 @@ pipeline {
                     if(artifactExists) {
                          echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                           Docker.withRegistry('https://index.docker.io/v1/', 'Dockerhub') {
-                                sh "docker build -t iheboueslati/springboot:${pom.version} ."
-                                sh "docker push iheboueslati/springboot:${pom.version}"
-                            }
-                           
-                       /*     sh "sudo docker login -u $USERNAME -p $PASSWORD"
+                            sh "sudo docker login -u $USERNAME -p $PASSWORD"
                             sh "sudo docker build -t iheboueslati/springboot:${pom.version} ."
-                            sh "sudo docker tag iheboueslati/springboot:${pom.version} iheboueslati/springboot:latest"
-                            sh "sudo docker push iheboueslati/springboot:${pom.version}"*/
+                       //     sh "sudo docker tag iheboueslati/springboot:${pom.version} iheboueslati/springboot:latest"
+                            sh "sudo docker push iheboueslati/springboot:${pom.version}"
+                            
                         }
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
