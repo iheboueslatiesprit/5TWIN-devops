@@ -21,17 +21,17 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 @RunWith(SpringRunner.class)
-//@SpringBootTest
+@SpringBootTest
 public class StockServiceImplTest {
 
-	//@Autowired
-	//IStockService stockService;
+	@Autowired
+	IStockService stockService;
 
 	@Mock
 	StockRepository stockRepository;
 
 	@InjectMocks
-	StockServiceImpl stockService ;
+	StockServiceImpl stockServiceMock ;
 
 	@Before
 	public void setUp() throws Exception {
@@ -40,7 +40,7 @@ public class StockServiceImplTest {
 
 
 	@Test
-	public void testAddStock(){
+	public void testAddStockMock(){
 		CategorieProduit categorieProduit = new CategorieProduit();
 		categorieProduit.setCodeCategorie("C1");
 
@@ -62,13 +62,13 @@ public class StockServiceImplTest {
 		stock.setProduits(new HashSet<>(Arrays.asList(produit1, produit2)));
 
 		Mockito.when(stockRepository.save(stock)).thenReturn(stock);
-			Stock s = stockService.addStock(stock);
+			Stock s = stockServiceMock.addStock(stock);
 			org.assertj.core.api.Assertions.assertThat(s.getLibelleStock()).isEqualTo("stock1");
 			Mockito.verify(stockRepository).save(stock);
 		}
 
 
-	/*
+
 	@Test
 	public void testAddStock() {
 	//	List<Stock> stocks = stockService.retrieveAllStocks();
@@ -80,7 +80,7 @@ public class StockServiceImplTest {
 		assertNotNull(savedStock.getLibelleStock());
 		stockService.deleteStock(savedStock.getIdStock());
 	} 
-	
+	/*
 	@Test
 	public void testAddStockOptimized() {
 		Stock s = new Stock("stock test",10,100);
