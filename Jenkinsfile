@@ -105,6 +105,8 @@ pipeline {
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh 'sudo docker login -u $USERNAME -p $PASSWORD'
                         def myimage = docker.build("iheboueslati/springboot:${pom.version}", "-f Dockerfile .")
                         myimage.push()
                         
