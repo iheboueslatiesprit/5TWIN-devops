@@ -109,7 +109,7 @@ pipeline {
                             sh "sudo docker login -u $USERNAME -p $PASSWORD"
                             sh "sudo docker build -t iheboueslati/springboot:${pom.version} ."
                             def image = docker.image("iheboueslati/springboot:${pom.version}")
-                            sh echo "docker image :" + image.id
+                            echo  "docker image :" + image.id 
                        //     sh "sudo docker tag iheboueslati/springboot:${pom.version} iheboueslati/springboot:latest"
                         //    sh "sudo docker push iheboueslati/springboot"
                             
