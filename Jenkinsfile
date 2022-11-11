@@ -112,7 +112,7 @@ pipeline {
                         }
                         //def myimage = docker.build("iheboueslati/springboot:${pom.version}", "-f Dockerfile .")
                         //myimage.push()
-                        }
+                        
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
