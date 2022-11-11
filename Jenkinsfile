@@ -104,10 +104,12 @@ pipeline {
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        docker.withRegistry( '', 'Dockerhub' ) {
+                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                            sh "sudo docker login -u $USERNAME -p $PASSWORD"
                             sh "sudo docker build -t iheboueslati/springboot:${pom.version} ."
                             sh "sudo docker push iheboueslati/springboot:${pom.version}"
+
                         }
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
@@ -116,14 +118,6 @@ pipeline {
             }
         }
         /*
-        stage('get docker image id') {
-            steps {
-                script {
-                    dockerImageId = sh(returnStdout: true, script: 'docker images | grep springboot | awk \'{print $3}\'').trim()
-                    echo "Docker image id: ${dockerImageId}"
-                }
-            }
-        }
         
         stage('Login to DockerHub') {
             steps {
