@@ -109,7 +109,7 @@ pipeline {
                             sh "sudo docker login -u $USERNAME -p $PASSWORD"
                             sh "sudo docker build -t iheboueslati/springboot:${pom.version} ."
                        //     sh "sudo docker tag iheboueslati/springboot:${pom.version} iheboueslati/springboot:latest"
-                            sh "sudo docker push iheboueslati/springboot:${pom.version}"
+                            sh "sudo docker push iheboueslati/springboot"
                             
                         }
                     } else {
