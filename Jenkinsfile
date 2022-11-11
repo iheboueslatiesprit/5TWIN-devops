@@ -105,8 +105,7 @@ pipeline {
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        docker.withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                            sh "docker login -u $USERNAME -p $PASSWORD"
+                        docker.withRegistry( '', 'Dockerhub' ) {
                             sh "docker build -t iheboueslati/springboot:${pom.version} ."
                             sh "docker push iheboueslati/springboot:${pom.version}"
                         }
