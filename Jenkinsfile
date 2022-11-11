@@ -94,7 +94,37 @@ pipeline {
                 }
             }
         }
-
+*/      
+        stage('github to dockerhub') {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        docker.withRegistry( '', DOCKERHUB_CREDENTIALS ) {
+                            sh "docker build -t iheboueslati/springboot:${pom.version} ."
+                            sh "docker push iheboueslati/springboot:${pom.version}"
+                        }
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found";
+                    }
+                }
+            }
+        }
+        /*
+        stage('get docker image id') {
+            steps {
+                script {
+                    dockerImageId = sh(returnStdout: true, script: 'docker images | grep springboot | awk \'{print $3}\'').trim()
+                    echo "Docker image id: ${dockerImageId}"
+                }
+            }
+        }
+        
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -102,7 +132,7 @@ pipeline {
                 }
             }
         }
-        stage('Pull build from nexus repository manager')
+
         stage('Docker build') {
             steps {
                 sh 'sudo docker build -t springboot .'
@@ -120,7 +150,7 @@ pipeline {
             }
         }
 
+    */
 
-*/
     }
 }
