@@ -108,7 +108,7 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'Dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh "sudo docker login -u $USERNAME -p $PASSWORD"
                             sh "sudo docker build -t iheboueslati/springboot:${pom.version} ."
-                            sh "sudo docker push iheboueslati/springboot:${pom.version}"
+                            sh "sudo docker push iheboueslati/springboot:springboot"
 
                         }
                     } else {
